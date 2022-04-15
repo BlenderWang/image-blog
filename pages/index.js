@@ -8,14 +8,13 @@ const Home = ({ articles, categories, homepage, global }) => {
     return (
         <Layout categories={categories}>
             <Seo seo={homepage.attributes.seo} />
+            {/* show an icon instead of texts */}
             <div data-src={global.attributes.favicon} />
-            <div className="uk-section">
-                <div className="uk-container uk-container-large">
-                    <h1 className="text-blue-500">
-                        {homepage.attributes.hero.title}
-                    </h1>
-                    <Articles articles={articles} />
-                </div>
+            <div className="lg:mx-[10%] lg:py-12">
+                <h1 className="text-slate-700 text-center lg:py-8">
+                    {homepage.attributes.hero.title}
+                </h1>
+                <Articles articles={articles} />
             </div>
         </Layout>
     );
