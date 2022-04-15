@@ -5,16 +5,20 @@ import NextImage from "./Image";
 const Card = ({ article }) => {
     return (
         <Link href={`/article/${article.attributes.slug}`}>
-            <a className="uk-link-reset">
-                <div className="uk-card uk-card-muted">
-                    <div className="uk-card-media-top">
+            <a className="hover:underline-offset-4 transition ease-in-out duration-300">
+                <div className="break-inside-avoid relative transform opacity-100">
+                    <div className="">
                         <NextImage image={article.attributes.image} />
                     </div>
-                    <div className="uk-card-body">
-                        <p id="category" className="uk-text-uppercase">
+
+                    <div className="invisible lg:visible absolute inset-0 flex flex-col justify-center items-center transition duration-200 ease-in opacity-0 hover:opacity-100">
+                        <div className="absolute inset-0 bg-slate-900 opacity-50"></div>
+
+                        <p id="category" className="text-xl text-yellow-100">
                             {article.attributes.category.data.attributes.name}
                         </p>
-                        <p id="title" className="uk-text-large">
+
+                        <p id="title" className="text-3xl text-white">
                             {article.attributes.title}
                         </p>
                     </div>
