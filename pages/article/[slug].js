@@ -8,11 +8,9 @@ import Layout from "../../components/Layout";
 import NextImage from "../../components/Image";
 
 import { fetchAPI, getStrapiURL } from "../../lib/api";
-import { getStrapiMedia } from "../../lib/media";
 
 const Article = ({ article, categories }) => {
-    /*  declares the image and SEO of the article */
-    const imageUrl = getStrapiMedia(article.attributes.image);
+    /*  declares SEO of the article */
 
     const seo = {
         metaTitle: article.attributes.title,
@@ -24,63 +22,62 @@ const Article = ({ article, categories }) => {
     return (
         <Layout categories={categories.data}>
             <Seo seo={seo} />
-            <div
-                id="banner"
-                className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-                data-src={imageUrl}
-                data-srcset={imageUrl}
-                data-uk-img
-            >
-                <h1>{article.attributes.title}</h1>
-            </div>
-            <>
-                <p>{article.attributes.description}</p>
-            </>
-            <div className="uk-section">
-                <div className="uk-container uk-container-small">
-                    <ReactMarkdown
-                        components={{
-                            p: ({ node, children }) => {
-                                if (node.children[0].tagName === "img") {
-                                    const image = node.children[0];
-                                    return (
-                                        <div className="image">
-                                            <Image
-                                                src={getStrapiURL(
-                                                    image.properties.src
-                                                )}
-                                                // src={`http://localhost:1337${image.properties.src}`}
-                                                alt={image.properties.alt}
-                                                layout="responsive"
-                                                objectFit="contain"
-                                                width="600"
-                                                height="300"
-                                            />
-                                        </div>
-                                    );
-                                }
-                                // Return default child if it's not an image
-                                return <p>{children}</p>;
-                            },
-                        }}
-                    >
-                        {article.attributes.content}
-                    </ReactMarkdown>
-                    <hr className="uk-divider-small" />
-                    <div
-                        className="uk-grid-small uk-flex-left"
-                        data-uk-grid="true"
-                    >
-                        <div className="uk-width-expand">
-                            <p className="uk-text-meta uk-margin-remove-top">
-                                <Moment format="MMM Do YYYY">
-                                    {article.attributes.published_at}
-                                </Moment>
-                            </p>
-                        </div>
-                    </div>
+
+            <section className="customGridPost mx-5 lg:mx-[200px] my-auto py-5">
+                <h1 className="text-slate-700 lg:grid-cols-1">
+                    {article.attributes.title}
+                </h1>
+
+                {article.attributes.description && (
+                    <blockquote className="bg-gray-100 p-5 border-l-2 lg:border-l-4 border-solid border-yellow-300 w-full xl:w-6/12">
+                        <p>{article.attributes.description}</p>
+                    </blockquote>
+                )}
+
+                <div className="xl:max-w-2xl xl:h-full xl:relative xl:left-2/4 xl:-translate-x-2/4">
+                    <NextImage image={article.attributes.image} />
                 </div>
-            </div>
+
+                <ReactMarkdown
+                    components={{
+                        p: ({ node, children }) => {
+                            if (node.children[0].tagName === "img") {
+                                const image = node.children[0];
+                                return (
+                                    <div className="image">
+                                        <Image
+                                            src={getStrapiURL(
+                                                image.properties.src
+                                            )}
+                                            alt={image.properties.alt}
+                                            layout="responsive"
+                                            objectFit="contain"
+                                            width="600"
+                                            height="300"
+                                        />
+                                    </div>
+                                );
+                            }
+                            // Return default child if it's not an image
+                            return (
+                                <p className="text-md lg:text-xl text-justify">
+                                    {children}
+                                </p>
+                            );
+                        },
+                    }}
+                >
+                    {article.attributes.content}
+                </ReactMarkdown>
+
+                <hr className="divide-y divide-solid w-24" />
+
+                <p className="text-sm">
+                    <Moment format="MMM Do YYYY">
+                        {article.attributes.published_at}
+                    </Moment>
+                </p>
+            </section>
         </Layout>
     );
 };
