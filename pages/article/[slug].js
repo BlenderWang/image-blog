@@ -1,11 +1,13 @@
 import React from "react";
+import Image from "next/image";
 import Moment from "react-moment";
 import ReactMarkdown from "react-markdown";
 
 import Seo from "../../components/Seo";
 import Layout from "../../components/Layout";
+import NextImage from "../../components/Image";
 
-import { fetchAPI } from "../../lib/api";
+import { fetchAPI, getStrapiURL } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
 
 const Article = ({ article, categories }) => {
@@ -31,10 +33,39 @@ const Article = ({ article, categories }) => {
             >
                 <h1>{article.attributes.title}</h1>
             </div>
+            <>
+                <p>{article.attributes.description}</p>
+            </>
             <div className="uk-section">
                 <div className="uk-container uk-container-small">
-                    {/* eslint-disable-next-line react/no-children-prop */}
-                    <ReactMarkdown children={article.attributes.content} />
+                    <ReactMarkdown
+                        components={{
+                            p: ({ node, children }) => {
+                                if (node.children[0].tagName === "img") {
+                                    const image = node.children[0];
+                                    return (
+                                        <div className="image">
+                                            <Image
+                                                src={getStrapiURL(
+                                                    image.properties.src
+                                                )}
+                                                // src={`http://localhost:1337${image.properties.src}`}
+                                                alt={image.properties.alt}
+                                                layout="responsive"
+                                                objectFit="contain"
+                                                width="600"
+                                                height="300"
+                                            />
+                                        </div>
+                                    );
+                                }
+                                // Return default child if it's not an image
+                                return <p>{children}</p>;
+                            },
+                        }}
+                    >
+                        {article.attributes.content}
+                    </ReactMarkdown>
                     <hr className="uk-divider-small" />
                     <div
                         className="uk-grid-small uk-flex-left"
