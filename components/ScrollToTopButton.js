@@ -28,7 +28,7 @@ const ScrollToTopButton = () => {
                     type="button"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
-                    className="inline-block p-3 bg-yellow-400 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg transition duration-250 ease-in-out bottom-5 right-5 fixed"
+                    className="inline-block p-3 bg-purple-400 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-500 hover:shadow-lg focus:bg-purple-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-600 active:shadow-lg transition duration-250 ease-in-out bottom-5 right-5 fixed"
                     id="btn-back-to-top"
                     onClick={scrollToTop}
                 >
