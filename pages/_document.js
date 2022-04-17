@@ -11,7 +11,7 @@ class MyDocument extends Document {
                         href="https://fonts.googleapis.com/css?family=Staatliches"
                     />
                 </Head>
-                <body>
+                <body className="bg-white dark:bg-slate-800 dark:text-white">
                     <Main />
                     <NextScript />
                 </body>

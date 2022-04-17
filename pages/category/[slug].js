@@ -14,7 +14,7 @@ const Category = ({ category, categories }) => {
         <Layout categories={categories.data}>
             <Seo seo={seo} />
             <section className="lg:mx-[10%] lg:py-12">
-                <h1 className="text-slate-700 text-center lg:py-8">
+                <h1 className="text-slate-700 dark:text-slate-300 text-center lg:py-8">
                     {category.attributes.name}
                 </h1>
                 <Articles articles={category.attributes.articles.data} />

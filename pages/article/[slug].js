@@ -24,12 +24,12 @@ const Article = ({ article, categories }) => {
             <Seo seo={seo} />
 
             <section className="customGridPost mx-5 lg:mx-[200px] my-auto py-5">
-                <h1 className="text-slate-700 lg:grid-cols-1">
+                <h1 className="text-slate-700 dark:text-slate-300 lg:grid-cols-1">
                     {article.attributes.title}
                 </h1>
 
                 {article.attributes.description && (
-                    <blockquote className="bg-gray-100 p-5 border-l-2 lg:border-l-4 border-solid border-purple-300 w-full xl:w-6/12">
+                    <blockquote className="bg-gray-100 dark:bg-gray-700 p-5 border-l-2 lg:border-l-4 border-solid border-purple-300 dark:border-blue-400 w-full xl:w-6/12">
                         <p>{article.attributes.description}</p>
                     </blockquote>
                 )}
