@@ -6,6 +6,8 @@ const Image = ({ image }) => {
 
     return (
         <NextImage
+            priority
+            as={"image"}
             layout="responsive"
             width={width || "300px"}
             height={height || "200px"}
