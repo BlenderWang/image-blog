@@ -1,8 +1,10 @@
 import App from "next/app";
 import Head from "next/head";
-import { createContext } from "react";
+import { Router } from "next/router";
+import React, { createContext, useState, useEffect } from "react";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
+import Loader from "../components/Loader";
 
 import "../styles/globals.css";
 
@@ -11,6 +13,25 @@ export const GlobalContext = createContext({});
 
 const MyApp = ({ Component, pageProps }) => {
     const { global } = pageProps;
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const start = () => {
+            setLoading(true);
+        };
+        const end = () => {
+            setLoading(false);
+        };
+        Router.events.on("routeChangeStart", start);
+        Router.events.on("routeChangeComplete", end);
+        Router.events.on("routeChangeError", end);
+
+        return () => {
+            Router.events.off("routeChangeStart", start);
+            Router.events.off("routeChangeComplete", end);
+            Router.events.off("routeChangeError", end);
+        };
+    }, []);
 
     return (
         <>
@@ -21,7 +42,7 @@ const MyApp = ({ Component, pageProps }) => {
                 />
             </Head>
             <GlobalContext.Provider value={global.attributes}>
-                <Component {...pageProps} />
+                {loading ? <Loader /> : <Component {...pageProps} />}
             </GlobalContext.Provider>
         </>
     );
