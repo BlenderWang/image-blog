@@ -23,7 +23,7 @@ const Article = ({ article, categories }) => {
         <Layout categories={categories.data}>
             <Seo seo={seo} />
 
-            <section className="customGridPost mx-5 lg:mx-[200px] my-auto py-5">
+            <section className="customGridPost grid gap-10px grid-cols-[1fr] lg:gap-x-10px lg:gap-y-50px lg:grid-cols-[1fr,12fr,1fr] mx-5 lg:mx-[200px] my-auto py-5">
                 <h1 className="text-slate-700 dark:text-slate-300 lg:grid-cols-1">
                     {article.attributes.title}
                 </h1>

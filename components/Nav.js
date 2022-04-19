@@ -27,7 +27,13 @@ const Nav = ({ categories }) => {
                 <Hamburger onClick={handleToggle} />
 
                 <>
-                    <ul className={navbarOpen ? "showNavbar" : "hideNavbar"}>
+                    <ul
+                        className={
+                            navbarOpen
+                                ? "bg-white dark:bg-slate-700 absolute w-full h-screen top-0 left-0 z-10 flex flex-col justify-evenly items-center opacity-100 transition duration-300 ease"
+                                : "hidden lg:flex opacity-0 lg:opacity-100"
+                        }
+                    >
                         {categories.map((category) => {
                             return (
                                 <li key={category.id} className="lg:mx-3">

@@ -2,7 +2,7 @@ import React from "react";
 
 const Loader = () => {
     return (
-        <div className="loader-container">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <svg
                 height="500"
                 width="500"
