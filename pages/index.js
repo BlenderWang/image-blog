@@ -21,7 +21,7 @@ const Home = ({ articles, categories, homepage, global }) => {
     );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     // Run API calls in parallel
     const [articlesRes, categoriesRes, homepageRes, globalRes] =
         await Promise.all([
@@ -47,7 +47,7 @@ export async function getStaticProps() {
             homepage: homepageRes.data,
             global: globalRes.data,
         },
-        revalidate: 1,
+        // revalidate: 1,
     };
 }
 

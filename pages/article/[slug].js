@@ -83,7 +83,7 @@ const Article = ({ article, categories }) => {
 };
 
 /* the article’s path needs to be defined using its slug */
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
     const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
 
     return {
@@ -94,10 +94,10 @@ export async function getStaticPaths() {
         })),
         fallback: false,
     };
-}
+} */
 
 /* define the props & to fetch the date of the article and the categories */
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     const articlesRes = await fetchAPI("/articles", {
         filters: {
             slug: params.slug,
@@ -108,7 +108,7 @@ export async function getStaticProps({ params }) {
 
     return {
         props: { article: articlesRes.data[0], categories: categoriesRes },
-        revalidate: 1,
+        // revalidate: 1,
     };
 }
 
