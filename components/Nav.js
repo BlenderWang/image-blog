@@ -13,7 +13,7 @@ const Nav = ({ categories }) => {
 
     return (
         <>
-            <nav className="flex lg:justify-between items-center lg:space-x-4 px-5 lg:mx-[10%] lg:mt-5">
+            <nav className="flex lg:justify-between items-center lg:space-x-4 px-5 lg:mx-[10%] lg:mt-5 xl:mx-[3%]">
                 <>
                     <ul className="lg:px-3 py-12 text-slate-700 dark:text-white font-medium hover:text-purple-500 dark:hover:text-blue-400 transition ease-in-out duration-300 active:text-grey-300 dark:active:text-grey-100">
                         <li>

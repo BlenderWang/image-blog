@@ -11,7 +11,7 @@ const Home = ({ articles, categories, homepage, global }) => {
             {/* show an icon instead of texts */}
             <div data-src={global.attributes.favicon} />
 
-            <div className="lg:mx-[10%] lg:py-12">
+            <div className="lg:mx-[10%] lg:py-12 xl:mx-5">
                 <h1 className="text-slate-700 dark:text-slate-300 text-center lg:py-8">
                     {homepage.attributes.hero.title}
                 </h1>
