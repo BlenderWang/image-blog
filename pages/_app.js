@@ -2,6 +2,7 @@ import App from "next/app";
 import Head from "next/head";
 import { Router } from "next/router";
 import React, { createContext, useState, useEffect } from "react";
+import { ThemeProvider } from "next-themes";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
 import Loader from "../components/Loader";
@@ -42,7 +43,9 @@ const MyApp = ({ Component, pageProps }) => {
                 />
             </Head>
             <GlobalContext.Provider value={global.attributes}>
-                {loading ? <Loader /> : <Component {...pageProps} />}
+                <ThemeProvider enableSystem={true} attribute="class">
+                    {loading ? <Loader /> : <Component {...pageProps} />}
+                </ThemeProvider>
             </GlobalContext.Provider>
         </>
     );

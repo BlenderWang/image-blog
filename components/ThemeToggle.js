@@ -1,46 +1,40 @@
 import React, { useEffect, useState } from "react";
-import useDarkMode from "../lib/useDarkMode";
+import { useTheme } from "next-themes";
+import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 
 const ThemeToggle = () => {
-    const [colorTheme, setTheme] = useDarkMode("");
+    const { systemTheme, theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
-    return (
-        <div>
-            {colorTheme === "light" ? (
-                <svg
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const renderThemeChanger = () => {
+        if (!mounted) return null;
+
+        const currentTheme = theme === "system" ? systemTheme : theme;
+
+        if (currentTheme === "dark") {
+            return (
+                <SunIcon
+                    className="w-6 h-6 text-yellow-500 transition ease-in-out duration-300 hover:pointer hover:text-yellow-200"
+                    role="button"
                     onClick={() => setTheme("light")}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-white transition ease-in-out duration-300 hover:pointer hover:text-blue-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3.55,18.54L4.96,19.95L6.76,18.16L5.34,16.74M11,22.45C11.32,22.45 13,22.45 13,22.45V19.5H11M12,5.5A6,6 0 0,0 6,11.5A6,6 0 0,0 12,17.5A6,6 0 0,0 18,11.5C18,8.18 15.31,5.5 12,5.5M20,12.5H23V10.5H20M17.24,18.16L19.04,19.95L20.45,18.54L18.66,16.74M20.45,4.46L19.04,3.05L17.24,4.84L18.66,6.26M13,0.55H11V3.5H13M4,10.5H1V12.5H4M6.76,4.84L4.96,3.05L3.55,4.46L5.34,6.26L6.76,4.84Z"
-                    />
-                </svg>
-            ) : (
-                <svg
+                />
+            );
+        } else {
+            return (
+                <MoonIcon
+                    className="w-6 h-6 text-slate-500 transition ease-in-out duration-300 hover:pointer hover:text-blue-500"
+                    role="button"
                     onClick={() => setTheme("dark")}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-slate-900 transition ease-in-out duration-300 hover:pointer hover:text-purple-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                    />
-                </svg>
-            )}
-        </div>
-    );
+                />
+            );
+        }
+    };
+
+    return <div>{renderThemeChanger()}</div>;
 };
 
 export default ThemeToggle;

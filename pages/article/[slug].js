@@ -28,7 +28,7 @@ const Article = ({ article, categories }) => {
                 </h1>
 
                 {article.attributes.description && (
-                    <blockquote className="bg-gray-100 dark:bg-gray-700 p-5 border-l-2 lg:border-l-4 border-solid border-purple-300 dark:border-blue-400 w-full xl:w-6/12">
+                    <blockquote className="bg-gray-100 dark:bg-gray-700 p-5 border-l-2 lg:border-l-4 border-solid border-blue-400 dark:border-yellow-400 w-full xl:w-6/12">
                         <p>{article.attributes.description}</p>
                     </blockquote>
                 )}

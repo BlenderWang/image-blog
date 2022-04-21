@@ -51,18 +51,18 @@ img:hover {
 @keyframes rotate-nautic {
     0% {
         transform: rotate(0deg);
-        fill: #d8b4fe;
+        fill: #eab308;
     }
     60% {
         transform: rotate(180deg);
-        fill: #60a5fa;
+        fill: #73aff9;
     }
     80% {
-        fill: #60a5fa;
+        fill: #73aff9;
     }
     100% {
         transform: rotate(180deg);
-        fill: #d8b4fe;
+        fill: #eab308;
     }
 }
 

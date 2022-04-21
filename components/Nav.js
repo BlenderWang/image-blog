@@ -15,7 +15,7 @@ const Nav = ({ categories }) => {
         <>
             <nav className="flex lg:justify-between items-center lg:space-x-4 px-5 lg:mx-[10%] lg:mt-5 xl:mx-[3%]">
                 <>
-                    <ul className="lg:px-3 py-12 text-slate-700 dark:text-white font-medium hover:text-purple-500 dark:hover:text-blue-400 transition ease-in-out duration-300 active:text-grey-300 dark:active:text-grey-100">
+                    <ul className="lg:px-3 py-12 text-slate-700 dark:text-white font-medium hover:text-blue-500 dark:hover:text-yellow-400 transition ease-in-out duration-300 active:text-grey-300 dark:active:text-grey-100">
                         <li>
                             <Link href="/">
                                 <a>{`Shirley Wang`}</a>
@@ -40,7 +40,7 @@ const Nav = ({ categories }) => {
                                     <Link
                                         href={`/category/${category.attributes.slug}`}
                                     >
-                                        <a className="uppercase hover:text-purple-500 hover:underline-offset-4 dark:text-white dark:hover:text-blue-400 transition ease-in-out duration-300 active:text-grey-300">
+                                        <a className="uppercase hover:text-blue-500 hover:underline-offset-4 dark:text-white dark:hover:text-yellow-400 transition ease-in-out duration-300 active:text-grey-300">
                                             {category.attributes.name}
                                         </a>
                                     </Link>
