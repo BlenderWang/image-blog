@@ -11,7 +11,6 @@ import { fetchAPI, getStrapiURL } from "../../lib/api";
 
 const Article = ({ article, categories }) => {
     /*  declares SEO of the article */
-
     const seo = {
         metaTitle: article.attributes.title,
         metaDescription: article.attributes.description,
@@ -83,7 +82,7 @@ const Article = ({ article, categories }) => {
 };
 
 /* the article’s path needs to be defined using its slug */
-/* export async function getStaticPaths() {
+export async function getStaticPaths() {
     const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
 
     return {
@@ -94,10 +93,10 @@ const Article = ({ article, categories }) => {
         })),
         fallback: false,
     };
-} */
+}
 
 /* define the props & to fetch the date of the article and the categories */
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
     const articlesRes = await fetchAPI("/articles", {
         filters: {
             slug: params.slug,
@@ -108,7 +107,7 @@ export async function getServerSideProps({ params }) {
 
     return {
         props: { article: articlesRes.data[0], categories: categoriesRes },
-        // revalidate: 1,
+        revalidate: 1,
     };
 }
 
