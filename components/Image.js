@@ -5,16 +5,20 @@ const Image = ({ image }) => {
     const { alternativeText, width, height } = image.data.attributes;
 
     return (
-        <NextImage
-            priority
-            as={"image"}
-            layout="responsive"
-            width={width || "300px"}
-            height={height || "200px"}
-            objectFit="contain"
-            src={getStrapiMedia(image)}
-            alt={alternativeText || ""}
-        />
+        <>
+            {image && (
+                <NextImage
+                    priority
+                    as={"image"}
+                    layout="responsive"
+                    width={width || "300px"}
+                    height={height || "200px"}
+                    objectFit="contain"
+                    src={getStrapiMedia(image)}
+                    alt={alternativeText || ""}
+                />
+            )}
+        </>
     );
 };
 
