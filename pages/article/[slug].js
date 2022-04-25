@@ -45,9 +45,8 @@ const Article = ({ article, categories }) => {
                                 return (
                                     <div className="image">
                                         <Image
-                                            src={getStrapiURL(
-                                                image.properties.src
-                                            )}
+                                            priority
+                                            src={image.properties.src}
                                             alt={image.properties.alt}
                                             layout="responsive"
                                             objectFit="contain"
